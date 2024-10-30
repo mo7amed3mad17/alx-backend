@@ -14,7 +14,10 @@ class FIFOCache(BaseCaching):
 
     def put(self, key, item):
         """ PUT method"""
-        if key is not None and item is not None:
+        if key is None or item is None:
+            return
+
+        if key not in self.cache_data:
             self.queue.append(key)
 
         self.cache_data[key] = item
